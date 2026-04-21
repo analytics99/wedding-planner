@@ -1,18 +1,5 @@
 {
   "buildCommand": "pip install -r requirements.txt",
-  "env": {
-    "NOTION_API_KEY": "@notion_api_key",
-    "DB_WEDDING_ID": "@db_wedding_id",
-    "DB_GUESTS_ID": "@db_guests_id",
-    "DB_SUB_EVENTS_ID": "@db_sub_events_id",
-    "DB_VENDORS_ID": "@db_vendors_id",
-    "DB_BOOKINGS_ID": "@db_bookings_id",
-    "DB_PROPERTIES_ID": "@db_properties_id",
-    "DB_TASKS_ID": "@db_tasks_id",
-    "DB_ENTERTAINMENT_ID": "@db_entertainment_id",
-    "DB_GIFTS_ID": "@db_gifts_id",
-    "DB_FAMILIES_ID": "@db_families_id"
-  },
   "headers": [
     {
       "source": "/(.*)",
