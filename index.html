@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Event Coordination System - Wedding Planner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            overflow-x: auto;
+        }
+
+        .nav-tabs button {
+            padding: 15px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s;
+            white-space: nowrap;
+            color: #555;
+        }
+
+        .nav-tabs button:hover {
+            background: #e9ecef;
+        }
+
+        .nav-tabs button.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .flow-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .step {
+            display: flex;
+            margin: 15px 0;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .step-content p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .table-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #764ba2;
+        }
+
+        .table-box h4 {
+            color: #764ba2;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .table-box p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .sheet-category {
+            margin: 30px 0;
+        }
+
+        .category-header {
+            background: #667eea;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .diagram {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .entity-box {
+            display: inline-block;
+            background: white;
+            border: 2px solid #667eea;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px;
+            min-width: 150px;
+        }
+
+        .entity-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #667eea;
+            padding-bottom: 5px;
+        }
+
+        .entity-fields {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .entity-fields p {
+            margin: 3px 0;
+        }
+
+        .privacy-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .privacy-note strong {
+            color: #856404;
+        }
+
+        .key-note {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .key-note strong {
+            color: #0c5460;
+        }
+
+        .quickstart {
+            background: #e2f0fb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .quickstart h4 {
+            color: #004085;
+            margin-bottom: 10px;
+        }
+
+        .quickstart ol {
+            margin-left: 20px;
+            color: #004085;
+        }
+
+        .quickstart li {
+            margin: 8px 0;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tables-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎊 Family Event Coordination System</h1>
+            <p>Complete Wedding Planning & Management Platform</p>
+        </header>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab(event, 'overview')">Overview</button>
+            <button class="tab-btn" onclick="showTab(event, 'features')">Features</button>
+            <button class="tab-btn" onclick="showTab(event, 'schema')">Schema Design</button>
+            <button class="tab-btn" onclick="showTab(event, 'sheets')">All Sheets</button>
+            <button class="tab-btn" onclick="showTab(event, 'quickstart')">Quick Start</button>
+            <button class="tab-btn" onclick="showTab(event, 'privacy')">Privacy & Security</button>
+        </div>
+
+        <div class="content">
+            <!-- OVERVIEW TAB -->
+            <div id="overview" class="tab-content active">
+                <h2>📋 System Overview</h2>
+                <p>A comprehensive digital platform for coordinating all aspects of a family wedding or major event. Designed specifically for Indian weddings with multiple stakeholders, complex vendor management, and privacy-aware guest tracking.</p>
+
+                <div class="key-note">
+                    <strong>🎯 Core Purpose:</strong> This system manages people, events, vendors, guests, accommodation, and gifts across a multi-day wedding with bride-side and groom-side families working collaboratively while maintaining privacy.
+                </div>
+
+                <h3>System Architecture</h3>
+                <p>The system is organized into 6 interconnected domains:</p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>👥 People Management</h4>
+                        <p>Users, Families, Family Members, and Relationships. Build your family tree and manage who has access.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>💍 Wedding & Events</h4>
+                        <p>Define the wedding, create sides (bride/groom), assign roles, and plan sub-events (Mehendi, Sangeet, Ceremony, etc.).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>👨‍💼 Vendors & Finance</h4>
+                        <p>Track vendors by category, create bookings, manage payments, and monitor costs per event.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>👫 Guest Management</h4>
+                        <p>Maintain guest lists, send invitations per sub-event, track RSVPs, dietary needs, and accessibility.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🏨 Accommodation</h4>
+                        <p>Manage properties, rooms, and guest assignments with check-in/check-out dates.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🎵 Entertainment & Gifts</h4>
+                        <p>Plan performances and performers, track gift tracking (shagun, cash, jewelry).</p>
+                    </div>
+                </div>
+
+                <h3>Multi-Sided Privacy Model</h3>
+                <p>This system uses a permission-based model where:</p>
+                <ul style="margin-left: 20px; margin: 10px 0;">
+                    <li><strong>Bride Side</strong> and <strong>Groom Side</strong> can each manage their own data independently</li>
+                    <li><strong>Joint Events</strong> can be marked for collaboration between sides</li>
+                    <li><strong>Private Events</strong> remain visible only to the hosting side</li>
+                    <li><strong>Gifts</strong> are strictly private to the recording side</li>
+                </ul>
+            </div>
+
+            <!-- FEATURES TAB -->
+            <div id="features" class="tab-content">
+                <h2>✨ Key Features</h2>
+
+                <h3>1. Family & User Management</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li>Phone-first user identity (mobile-first design)</li>
+                    <li>Family unit organization with multiple members</li>
+                    <li>Family relationship graphs (parent, sibling, cousin, etc.)</li>
+                    <li>Role-based access control (Owner, Co-organizer, Viewer)</li>
+                </ul>
+
+                <h3>2. Event Orchestration</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li>Multi-day wedding management</li>
+                    <li>Unlimited sub-events (Mehendi, Sangeet, Ceremony, Reception, etc.)</li>
+                    <li>Private vs. Joint event scoping</li>
+                    <li>Event scheduling with times, locations, and leads</li>
+                    <li>Customizable event types</li>
+                </ul>
+
+                <h3>3. Vendor & Finance Tracking</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li>Hierarchical vendor categories (Catering > North Indian, etc.)</li>
+                    <li>Contact and quote management</li>
+                    <li>Booking status tracking (pending, confirmed, completed)</li>
+                    <li>Payment milestone tracking (advance, balance)</li>
+                    <li>Cost analysis per sub-event</li>
+                </ul>
+
+                <h3>4. Guest Management</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li>Guest database separate from family members</li>
+                    <li>Per-guest dietary restrictions and accessibility needs</li>
+                    <li>Event-wise invitations (not everyone invited to all events)</li>
+                    <li>RSVP status tracking (pending, accepted, declined)</li>
+                    <li>Plus-one management</li>
+                </ul>
+
+                <h3>5. Accommodation Management</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li>Multiple properties (hotels, family homes, resorts)</li>
+                    <li>Room-level inventory</li>
+                    <li>Guest-to-room assignments with dates</li>
+                    <li>Room type and amenity tracking</li>
+                </ul>
+
+                <h3>6. Entertainment Planning</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li>Performances (dances, speeches, skits, etc.)</li>
+                    <li>Performer assignments (family members or guests)</li>
+                    <li>Costume notes and rehearsal tracking</li>
+                </ul>
+
+                <h3>7. Gift Tracking</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li>Shagun tracking (envelopes received)</li>
+                    <li>Gift types (cash, jewelry, items)</li>
+                    <li>Donor identification (linked to guests)</li>
+                    <li>Acknowledgment status tracking</li>
+                    <li><strong>Privacy: Strictly visible to recording side only</strong></li>
+                </ul>
+
+                <h3>8. Task & Requirement Management</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li>Pre-seeded requirement templates per event type</li>
+                    <li>Auto-generation of checklists per sub-event</li>
+                    <li>Task assignment to family members</li>
+                    <li>Status tracking (pending, in progress, completed)</li>
+                    <li>Due date management</li>
+                </ul>
+            </div>
+
+            <!-- SCHEMA TAB -->
+            <div id="schema" class="tab-content">
+                <h2>🏗️ Database Schema Design</h2>
+
+                <h3>Entity Relationship Overview</h3>
+                <div class="diagram">
+                    <p style="margin-bottom: 15px; color: #666;"><strong>Core Entity Relationships:</strong></p>
+                    <div style="text-align: center; overflow-x: auto;">
+                        <pre style="text-align: left; display: inline-block;">
+Users (phone-based)
+  ├─ 1:N → Families (owner)
+  ├─ N:M → Sides (via SideMembership)
+  └─ 0:1 → FamilyMembers
+
+Families
+  ├─ 1:N → FamilyMembers
+  └─ 1:1 → Sides (one family per side)
+
+FamilyMembers
+  ├─ N:M → FamilyMembers (via Relationships)
+  ├─ 1:N → SubEventRequirements
+  ├─ 1:N → Performances (as lead)
+  └─ 1:N → Performers
+
+Wedding
+  ├─ 1:N → Sides
+  ├─ 1:N → SubEvents
+  ├─ 1:N → Properties
+  └─ 1:N → Gifts
+
+SubEvents
+  ├─ 1:N → Bookings
+  ├─ 1:N → GuestInvitations
+  ├─ 1:N → SubEventRequirements
+  └─ 1:N → Performances
+
+Vendors ──→ Bookings ←─ SubEvents
+Guests ──→ GuestInvitations ←─ SubEvents
+Rooms ──→ RoomAssignments ←─ Guests
+                        </pre>
+                    </div>
+                </div>
+
+                <h3>Schema Categories</h3>
+
+                <div class="sheet-category">
+                    <div class="category-header">👥 PEOPLE & FAMILY (4 tables)</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>Users</h4>
+                            <p>Account holders with phone numbers as primary identity</p>
+                            <p><small><strong>Fields:</strong> user_id, phone, email, display_name, timestamps</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Families</h4>
+                            <p>Family units with an owner user and home city</p>
+                            <p><small><strong>Fields:</strong> family_id, family_name, owner_user_id, home_city</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>FamilyMembers</h4>
+                            <p>Individual family members with optional user accounts</p>
+                            <p><small><strong>Fields:</strong> member_id, family_id, user_id, full_name, relationship_to_owner, is_decision_maker</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Relationships</h4>
+                            <p>Member-to-member relationship edges within families</p>
+                            <p><small><strong>Fields:</strong> relationship_id, from_member_id, to_member_id, relationship_type</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">💍 WEDDING & EVENTS (4 tables)</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>Wedding</h4>
+                            <p>Top-level container for the entire wedding</p>
+                            <p><small><strong>Fields:</strong> wedding_id, name, dates, city, status, is_two_sided</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Sides</h4>
+                            <p>Bride/Groom/Solo sides linking families to wedding</p>
+                            <p><small><strong>Fields:</strong> side_id, wedding_id, family_id, side_name, side_type</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>SideMembership</h4>
+                            <p>User roles on each side (Owner/CoOrganizer/Viewer)</p>
+                            <p><small><strong>Fields:</strong> membership_id, user_id, side_id, role, joined_at</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>SubEvents</h4>
+                            <p>Individual functions (Mehendi, Sangeet, Ceremony, etc.)</p>
+                            <p><small><strong>Fields:</strong> sub_event_id, wedding_id, event_type, dates/times, hosting_scope (private/joint)</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">👨‍💼 VENDORS & FINANCE (3 tables)</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>VendorCategories</h4>
+                            <p>Pre-seeded hierarchical vendor categories</p>
+                            <p><small><strong>Fields:</strong> category_id, category_name, parent_category_id</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Vendors</h4>
+                            <p>Vendor contact records by category</p>
+                            <p><small><strong>Fields:</strong> vendor_id, name, category_id, contact, phone, email, address, created_by_side_id</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Bookings</h4>
+                            <p>Vendor bookings for specific sub-events</p>
+                            <p><small><strong>Fields:</strong> booking_id, vendor_id, sub_event_id, amount, advance, payment_status, booking_status</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">👫 GUESTS & INVITATIONS (2 tables)</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>Guests</h4>
+                            <p>Guest database separate from family members</p>
+                            <p><small><strong>Fields:</strong> guest_id, name, phone, email, invited_by_side_id, dietary_restrictions, accessibility_needs</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>GuestInvitations</h4>
+                            <p>Event-wise guest invitations with RSVPs</p>
+                            <p><small><strong>Fields:</strong> invitation_id, guest_id, sub_event_id, status (pending/accepted/declined), plus_ones</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">🏨 ACCOMMODATION (3 tables)</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>Properties</h4>
+                            <p>Hotels, homes, resorts for guest stays</p>
+                            <p><small><strong>Fields:</strong> property_id, wedding_id, name, address, capacity, check-in/out dates</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Rooms</h4>
+                            <p>Individual rooms within properties</p>
+                            <p><small><strong>Fields:</strong> room_id, property_id, room_number, type, capacity, amenities</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>RoomAssignments</h4>
+                            <p>Guest-to-room assignments with dates</p>
+                            <p><small><strong>Fields:</strong> assignment_id, room_id, guest_id, check_in, check_out</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">🎵 ENTERTAINMENT (2 tables)</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>Performances</h4>
+                            <p>Performance items (dances, speeches) for events</p>
+                            <p><small><strong>Fields:</strong> performance_id, sub_event_id, name, type, duration</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Performers</h4>
+                            <p>Family members or guests in performances</p>
+                            <p><small><strong>Fields:</strong> performer_id, performance_id, member_id/guest_id, role, costume_notes</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">📋 TASKS & REQUIREMENTS (2 tables)</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>RequirementTemplates</h4>
+                            <p>Pre-seeded checklists per event type</p>
+                            <p><small><strong>Fields:</strong> template_id, event_type, requirement_description, priority</small></p>
+                        </div>
+                        <div class="table-box">
+                            <h4>SubEventRequirements</h4>
+                            <p>Instantiated tasks for each sub-event</p>
+                            <p><small><strong>Fields:</strong> requirement_id, sub_event_id, description, responsible_member_id, status, due_date</small></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">🎁 GIFTS (1 table)</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>Gifts</h4>
+                            <p>Shagun tracking - cash, jewelry, items received</p>
+                            <p><small><strong>Fields:</strong> gift_id, wedding_id, recorded_by_side_id, linked_guest_id, gift_type, amount/description, date_received, acknowledgment_status</small></p>
+                            <p><strong style="color: #d32f2f;">Privacy: OWN SIDE ONLY - Never visible to other side</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SHEETS TAB -->
+            <div id="sheets" class="tab-content">
+                <h2>📑 Complete Sheet Reference</h2>
+
+                <h3>Navigation Guide</h3>
+                <p style="margin: 20px 0;">This workbook contains 24 sheets organized by function:</p>
+
+                <div class="sheet-category">
+                    <div class="category-header">📖 INFORMATION SHEETS</div>
+                    <div class="tables-grid">
+                        <div class="table-box">
+                            <h4>README</h4>
+                            <p>System overview, ID conventions, sheet color legend, and privacy rules</p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Data_Dictionary</h4>
+                            <p>Complete entity reference with purposes, relationships, phases, and privacy levels</p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Schema Design</h4>
+                            <p>Detailed table structures, columns, relationships, and entity groupings</p>
+                        </div>
+                        <div class="table-box">
+                            <h4>Lookups</h4>
+                            <p>Controlled vocabularies for all dropdown fields and enums</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">👥 PEOPLE SHEETS (4 tables + 1 ref)</div>
+                    <ul style="margin-left: 20px; margin: 15px 0;">
+                        <li><strong>Users</strong> - Account holders (USR-###)</li>
+                        <li><strong>Families</strong> - Family units (FAM-###)</li>
+                        <li><strong>FamilyMembers</strong> - Individual family members (MEM-###)</li>
+                        <li><strong>Relationships</strong> - Family member connections (REL-###)</li>
+                    </ul>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">💍 WEDDING & EVENTS (4 tables)</div>
+                    <ul style="margin-left: 20px; margin: 15px 0;">
+                        <li><strong>Wedding</strong> - Wedding definition (WED-###)</li>
+                        <li><strong>Sides</strong> - Bride/Groom/Solo sides (SID-###)</li>
+                        <li><strong>SideMembership</strong> - User roles on sides (SMS-###)</li>
+                        <li><strong>SubEvents</strong> - Individual functions like Mehendi, Sangeet (SUB-###)</li>
+                    </ul>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">👨‍💼 VENDORS & FINANCE (3 tables + 1 ref)</div>
+                    <ul style="margin-left: 20px; margin: 15px 0;">
+                        <li><strong>VendorCategories</strong> - Hierarchical vendor categories (VC-###) [Reference]</li>
+                        <li><strong>Vendors</strong> - Vendor contacts (VND-###)</li>
+                        <li><strong>Bookings</strong> - Vendor bookings per event (BKG-###)</li>
+                    </ul>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">👫 GUESTS & INVITATIONS (2 tables)</div>
+                    <ul style="margin-left: 20px; margin: 15px 0;">
+                        <li><strong>Guests</strong> - Guest list separate from family (GST-###)</li>
+                        <li><strong>GuestInvitations</strong> - Per-event invitations (INV-###)</li>
+                    </ul>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">🏨 ACCOMMODATION (3 tables)</div>
+                    <ul style="margin-left: 20px; margin: 15px 0;">
+                        <li><strong>Properties</strong> - Hotels, homes for stays (PRP-###)</li>
+                        <li><strong>Rooms</strong> - Individual rooms (ROM-###)</li>
+                        <li><strong>RoomAssignments</strong> - Guest-to-room mappings (RAS-###)</li>
+                    </ul>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">🎵 ENTERTAINMENT (2 tables)</div>
+                    <ul style="margin-left: 20px; margin: 15px 0;">
+                        <li><strong>Performances</strong> - Performance items (PRF-###)</li>
+                        <li><strong>Performers</strong> - Performers in shows (PFR-###)</li>
+                    </ul>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">📋 TASKS & REQUIREMENTS (2 tables + 1 ref)</div>
+                    <ul style="margin-left: 20px; margin: 15px 0;">
+                        <li><strong>RequirementTemplates</strong> - Pre-seeded checklists (RT-###) [Reference]</li>
+                        <li><strong>SubEventRequirements</strong> - Task lists per event (REQ-###)</li>
+                    </ul>
+                </div>
+
+                <div class="sheet-category">
+                    <div class="category-header">🎁 GIFTS (1 table)</div>
+                    <ul style="margin-left: 20px; margin: 15px 0;">
+                        <li><strong>Gifts</strong> - Shagun tracking (GFT-###) <span style="color: #d32f2f;"><strong>[PRIVATE: Own side only]</strong></span></li>
+                    </ul>
+                </div>
+
+                <div class="key-note">
+                    <strong>Sheet Colors:</strong>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li><span style="background: #1F4E78; color: white; padding: 2px 8px; border-radius: 3px;">Dark teal headers</span> = Entity sheets (you fill these in)</li>
+                        <li><span style="background: #8B7355; color: white; padding: 2px 8px; border-radius: 3px;">Dark gold headers</span> = Reference/lookup sheets (pre-seeded)</li>
+                        <li><span style="background: #D3D3D3; padding: 2px 8px; border-radius: 3px;">Light grey rows</span> = Example rows (DELETE before using)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- QUICKSTART TAB -->
+            <div id="quickstart" class="tab-content">
+                <h2>🚀 Quick Start Guide</h2>
+
+                <div class="quickstart">
+                    <h4>👉 Getting Started in 10 Steps</h4>
+                    <ol>
+                        <li>
+                            <strong>Delete Example Data</strong><br>
+                            <small>Remove all light grey example rows from entity sheets to start fresh with your wedding</small>
+                        </li>
+                        <li>
+                            <strong>Add Users (USR-###)</strong><br>
+                            <small>Create user records for all family members who need access (requires phone number)</small>
+                        </li>
+                        <li>
+                            <strong>Create Families (FAM-###)</strong><br>
+                            <small>Add bride and groom families. Each family gets one Family record.</small>
+                        </li>
+                        <li>
+                            <strong>Add Family Members (MEM-###)</strong><br>
+                            <small>List all members of each family. Link existing users where applicable.</small>
+                        </li>
+                        <li>
+                            <strong>Define Relationships (REL-###)</strong><br>
+                            <small>Create member-to-member relationships (parent, sibling, cousin, etc.) within families</small>
+                        </li>
+                        <li>
+                            <strong>Create Wedding (WED-###)</strong><br>
+                            <small>Add one Wedding record with start/end dates, city, and status</small>
+                        </li>
+                        <li>
+                            <strong>Create Sides (SID-###)</strong><br>
+                            <small>Create one Side per family (typically Bride Side and Groom Side)</small>
+                        </li>
+                        <li>
+                            <strong>Add Side Membership (SMS-###)</strong><br>
+                            <small>Assign users to sides with roles (Owner, Co-organizer, Viewer)</small>
+                        </li>
+                        <li>
+                            <strong>Plan Sub-Events (SUB-###)</strong><br>
+                            <small>Create Mehendi, Sangeet, Ceremony, Reception, etc. with dates, times, locations</small>
+                        </li>
+                        <li>
+                            <strong>Add Supporting Data</strong><br>
+                            <small>Vendors, Guests, Rooms, Requirements - in the order that makes sense for your workflow</small>
+                        </li>
+                    </ol>
+                </div>
+
+                <h3>📋 Setup Checklist by Phase</h3>
+
+                <div class="flow-section">
+                    <h4 style="margin-top: 0;">Phase 1: Foundation (Core Setup)</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Users</h4>
+                            <p>Add all users with phone numbers (primary identity)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Families & Members</h4>
+                            <p>Create family records, add family members, define relationships</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Wedding & Sides</h4>
+                            <p>Define the wedding, create bride/groom sides, assign users to sides with roles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-section">
+                    <h4 style="margin-top: 0;">Phase 2: Event Planning</h4>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Sub-Events</h4>
+                            <p>Create all events (Mehendi, Sangeet, Ceremony, Reception, etc.)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Requirement Templates</h4>
+                            <p>Review pre-seeded templates, customize as needed</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h4>Sub-Event Requirements</h4>
+                            <p>Create checklist tasks for each event, assign to responsible members</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-section">
+                    <h4 style="margin-top: 0;">Phase 3: Vendors & Guests</h4>
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h4>Vendors & Bookings</h4>
+                            <p>Add vendor contacts, create bookings per sub-event, track payments</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">8</div>
+                        <div class="step-content">
+                            <h4>Guests & Invitations</h4>
+                            <p>Build guest list, create invitations per sub-event, track RSVPs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-section">
+                    <h4 style="margin-top: 0;">Phase 4: Logistics & Entertainment</h4>
+                    <div class="step">
+                        <div class="step-number">9</div>
+                        <div class="step-content">
+                            <h4>Properties & Rooms</h4>
+                            <p>Define accommodation, assign rooms to guests</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">10</div>
+                        <div class="step-content">
+                            <h4>Performances & Gifts</h4>
+                            <p>Plan performances, track gift recording after each event</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>ID Naming Convention</h3>
+                <p>Use these prefixes for auto-incrementing IDs:</p>
+                <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                    <tr style="background: #667eea; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Entity</th>
+                        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Prefix</th>
+                        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Example</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">User</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">USR</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">USR-001, USR-002</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;">Family</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">FAM</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">FAM-001, FAM-002</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Family Member</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">MEM</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">MEM-001, MEM-002</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;">Wedding</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">WED</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">WED-001</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Side</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">SID</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">SID-001, SID-002</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;">Guest</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">GST</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">GST-001, GST-002</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- PRIVACY TAB -->
+            <div id="privacy" class="tab-content">
+                <h2>🔒 Privacy & Security</h2>
+
+                <h3>Privacy Model Overview</h3>
+                <p>This system is built with strict privacy controls to respect the sensitive nature of wedding planning:</p>
+
+                <div class="privacy-note">
+                    <strong>Core Principle:</strong> Each side (Bride/Groom) operates independently but can collaborate on joint events. Sensitive data like gifts is completely isolated per side.
+                </div>
+
+                <h3>Privacy Tiers</h3>
+
+                <div class="flow-section">
+                    <h4 style="margin-top: 0;">🌍 GLOBAL (Visible to Both Sides)</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Basic Wedding Info</h4>
+                            <p>Wedding dates, primary city, basic event structure</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Reference Data</h4>
+                            <p>Vendor categories, requirement templates, lookup tables</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-section">
+                    <h4 style="margin-top: 0;">👥 SIDE INTERNAL (Only Own Side)</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Family Data</h4>
+                            <p>Family members, relationships, user memberships on side</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Side-Owned Vendors</h4>
+                            <p>Vendors created by your side (can optionally share)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Guest Invitations</h4>
+                            <p>Guests invited by your side and their RSVPs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-section">
+                    <h4 style="margin-top: 0;">📍 EVENT-SCOPED (Per Sub-Event Privacy)</h4>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Private Events</h4>
+                            <p>Visible only to hosting side (Mehendi to Bride side, Baraat to Groom side)</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Joint Events</h4>
+                            <p>Visible to both sides (Ceremony, Reception, Joint Sangeet)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="privacy-note" style="background: #f8d7da; border-left-color: #f5c6cb;">
+                    <strong>🚨 STRICT PRIVACY: GIFTS</strong><br>
+                    <p>Gifts table is <strong>COMPLETELY PRIVATE to recording side only</strong>. Never visible to other side. This includes:</p>
+                    <ul style="margin: 10px 0 0 20px; color: #721c24;">
+                        <li>No side-to-side sharing of gift records</li>
+                        <li>No "who sent what" visibility across sides</li>
+                        <li>Each side maintains their own gift tracking independently</li>
+                    </ul>
+                </div>
+
+                <h3>Role-Based Access Control</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 15px 0;">
+                    <tr style="background: #667eea; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Role</th>
+                        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Capabilities</th>
+                        <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Side Data Access</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Owner</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Full edit, invite users, manage all data</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Complete (including Gifts)</td>
+                    </tr>
+                    <tr style="background: #f8f9fa;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Co-organizer</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Edit most data, add guests/vendors</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Most data (may exclude Gifts)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Viewer</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Read-only access for planning input</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Read-only (excludes Gifts, sensitive data)</td>
+                    </tr>
+                </table>
+
+                <h3>Data Ownership Rules</h3>
+                <ul style="margin-left: 20px; margin: 15px 0;">
+                    <li><strong>Vendors:</strong> Owned by creating side, can optionally be shared with other side</li>
+                    <li><strong>Guests:</strong> Owned by inviting side, no cross-side visibility</li>
+                    <li><strong>Bookings:</strong> Visible to both sides (needed for event planning)</li>
+                    <li><strong>Properties:</strong> Owned by managing side, shared for event attendance</li>
+                    <li><strong>Gifts:</strong> <strong style="color: #d32f2f;">STRICTLY PRIVATE - No sharing, no cross-side visibility</strong></li>
+                </ul>
+
+                <h3>Best Practices</h3>
+                <div class="flow-section">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Minimize Side Memberships</h4>
+                            <p>Only grant access to users who need it on each side</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Use Appropriate Roles</h4>
+                            <p>Don't grant Owner role when Viewer/Co-organizer would suffice</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Review Joint Events</h4>
+                            <p>Clearly mark which events are joint (Ceremony, Reception) vs. private</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Track Gift Recording</h4>
+                            <p>Only record gifts in your side's Gift table - maintain independent tracking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Family Event Coordination Template v0.2</strong></p>
+            <p>Complete digital platform for wedding planning with multi-sided privacy, vendor management, guest tracking, and accommodation coordination.</p>
+            <p style="margin-top: 10px; color: #999;">Last Updated: April 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(event, tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Show selected tab and mark button as active
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
